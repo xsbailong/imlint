@@ -1,0 +1,9 @@
+{
+  "name": "<%= algorithm %>",
+  "private": true,
+  "dependencies": {<% if (environment === "browser") { %>
+      "chai": "~1.8.0",
+      "mocha": "~1.14.0"
+  <% } %>},
+  "devDependencies": {}
+}
