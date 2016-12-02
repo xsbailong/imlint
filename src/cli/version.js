@@ -1,3 +1,5 @@
+'use strict'
+
 /**
  *
  * @author andyzlliu andyzlliu@tencent.com
@@ -6,7 +8,7 @@
 
 const expo = {
     init: () => {
-        console.log('version 1.0.0');
+        console.log('version 0.0.7');
     }
 };
 

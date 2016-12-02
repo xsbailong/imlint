@@ -1,3 +1,5 @@
+'use strict'
+
 /**
  *
  * @author andyzlliu andyzlliu@tencent.com
@@ -13,22 +15,52 @@ let cfg = {};
 let cli = {};
 
 const priva = {
+    getCli: (args) => {
+        if (!args) {
+            // @TODO
+            return CONFIG.DEFAULT_CMD;
+        }
+
+        // if (args.v || args.version) {
+        //     return 'version';
+        // }
+
+        // if (args.h || args.help) {
+        //     return 'help';
+        // }
+
+        let res;
+        const cmds = args._ || {};
+
+        Object.keys(args).some(function (key) {
+            if (CONFIG.CLI_PARAMS[key]) {
+                res = CONFIG.CLI_PARAMS[key];
+                return true;
+            }
+        });
+
+        if (!res) {
+            cmds.some(function (key) {
+                if (CONFIG.CLI_MAP[key]) {
+                    res = CONFIG.CLI_MAP[key];
+                    return true;
+                }
+            });
+        }
+
+        return res || CONFIG.DEFAULT_CMD;
+    },
+
     initArgs: () => {
         const args = cfg.args;
+        let cliName = priva.getCli(args);
 
-        // 查看版本
-        if (args.v || args.version) {
-            cli.version && cli.version.init(args);
-            return;
+        // 命令不存在
+        if (!cli[cliName]) {
+            cliName = CONFIG.DEFAULT_CMD;
         }
 
-        // 帮助文档
-        if (args.h || args.help) {
-            cli.help && cli.help.init(args);
-            return;
-        }
-
-        cli.init.init(args);
+        cli[cliName].init(args);
     },
 
     initCli: () => {
@@ -50,27 +82,8 @@ const expo = {
         // 参数解析
         cfg.args = minimist(process.argv.slice(2));
 
-        console.log(cfg.args);
-
-        // var program = require('commander');
-
-        // program
-        //   .version('0.0.1')
-        //   .option('-p, --peppers', 'Add peppers')
-        //   .option('-P, --pineapple', 'Add pineapple')
-        //   .option('-b, --bbq-sauce', 'Add bbq sauce')
-        //   .option('-c, --cheese [type]', 'Add the specified type of cheese [marble]', 'marble')
-        //   .parse(process.argv);
-
-        // console.log('you ordered a pizza with:');
-        // if (program.peppers) console.log('  - peppers');
-        // if (program.pineapple) console.log('  - pineapple');
-        // if (program.bbqSauce) console.log('  - bbq');
-        // console.log('  - %s cheese', program.cheese);
-
         // 初始化入口
         priva.init();
-
     }
 };
 
