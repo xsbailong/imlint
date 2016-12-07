@@ -1,4 +1,8 @@
-### START
+##imlint
+### Screenshot
+![imlint-init](https://raw.githubusercontent.com/xsbailong/img/master/imlint/imlint-init.gif)
+![imlint-check](https://raw.githubusercontent.com/xsbailong/img/master/imlint/imlint-check.gif)
+### Start
 #### 新项目接入
 ```bash
 cd 新项目目录
@@ -12,7 +16,7 @@ imlint init
 imlint init
 ```
 
-### USAGE
+### Usage
 ```bash
 imlint init 初始化项目
 
