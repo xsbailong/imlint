@@ -1,7 +1,11 @@
 ##imlint
 ### Screenshot
+#### imlint init
 ![imlint-init](https://raw.githubusercontent.com/xsbailong/img/master/imlint/imlint-init.gif)
+
+#### imlint check
 ![imlint-check](https://raw.githubusercontent.com/xsbailong/img/master/imlint/imlint-check.gif)
+
 ### Start
 #### 新项目接入
 ```bash
