@@ -6,6 +6,11 @@
 #### imlint check
 ![imlint-check](https://raw.githubusercontent.com/xsbailong/img/master/imlint/imlint-check.gif)
 
+### Installation
+```bash
+npm install imlint -g
+```
+
 ### Start
 #### 新项目接入
 ```bash
