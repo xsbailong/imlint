@@ -7,9 +7,9 @@
  */
 
 const expo = {
-    init: () => {
-        console.log('version 0.0.7');
-    }
+  init: () => {
+    console.log('version 0.0.7');
+  }
 };
 
 module.exports = expo;

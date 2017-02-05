@@ -12,12 +12,12 @@ const yeoman = require('yeoman-environment');
 const env = yeoman.createEnv();
 
 const expo = {
-    init: () => {
-        env.register(require.resolve('generator-imlint-init'), 'imlint:init');
-        env.run('imlint:init', () => {
-            console.log('imlint: done! 查看更多帮助输入imlint -h');
-        });
-    }
+  init: () => {
+    env.register(require.resolve('generator-imlint-init'), 'imlint:init');
+    env.run('imlint:init', () => {
+      console.log('imlint: done! 查看更多帮助输入imlint -h');
+    });
+  }
 };
 
 module.exports = expo;

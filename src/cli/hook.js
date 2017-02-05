@@ -13,25 +13,25 @@ const env = yeoman.createEnv();
 let cfg = {};
 
 const priva = {
-    initCfg: (args) => {
-        cfg.args = args || {};
-    },
+  initCfg: (args) => {
+    cfg.args = args || {};
+  },
 
-    run: () => {
-        let params = {};
+  run: () => {
+    let params = {};
 
-        env.register(require.resolve('generator-imlint-hook'), 'imlint:hook');
-        env.run('imlint:hook', cfg.args, () => {
-            console.log('imlint: done!');
-        });
-    }
+    env.register(require.resolve('generator-imlint-hook'), 'imlint:hook');
+    env.run('imlint:hook', cfg.args, () => {
+      console.log('imlint: done!');
+    });
+  }
 };
 
 const expo = {
-    init: (args) => {
-        priva.initCfg(args);
-        priva.run();
-    }
+  init: (args) => {
+    priva.initCfg(args);
+    priva.run();
+  }
 };
 
 module.exports = expo;

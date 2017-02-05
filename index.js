@@ -7,9 +7,9 @@
  */
 
 Object.defineProperties(exports, {
-    check: {
-        get: function () {
-            return require('./src/cli/check').run;
-        }
+  check: {
+    get: function () {
+      return require('./src/cli/check').run;
     }
+  }
 });

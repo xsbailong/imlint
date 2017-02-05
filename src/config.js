@@ -8,23 +8,23 @@
 /*jslint node: true */
 
 module.exports = {
-    DEFAULT_CMD: 'help',
-    COMMAND: [
-        'check',
-        'help',
-        'init',
-        'version',
-        'hook'
-    ],
-    CLI_PARAMS: {
-        'v': 'version',
-        'version': 'version',
-        'h': 'help',
-        'help': 'help'
-    },
-    CLI_MAP: {
-        'hook': 'hook',
-        'init': 'init',
-        'check': 'check'
-    }
+  DEFAULT_CMD: 'help',
+  COMMAND: [
+    'check',
+    'help',
+    'init',
+    'version',
+    'hook'
+  ],
+  CLI_PARAMS: {
+    'v': 'version',
+    'version': 'version',
+    'h': 'help',
+    'help': 'help'
+  },
+  CLI_MAP: {
+    'hook': 'hook',
+    'init': 'init',
+    'check': 'check'
+  }
 };
