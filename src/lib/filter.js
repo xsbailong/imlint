@@ -4,11 +4,13 @@
  * @date Sun Feb 05 2017
  */
 
+'use strict';
+
 module.exports = {
   noNull: (fileStrs) => {
     let res = [];
 
-    fileStrs.forEach(function (item) {
+    fileStrs.forEach((item) => {
       if (item !== '') {
         res.push(item);
       }
@@ -24,12 +26,12 @@ module.exports = {
       return arr;
     }
 
-    arr.forEach(function (item) {
+    arr.forEach((item) => {
       if (rule.test(item)) {
         res.push(item);
       }
     });
 
     return res;
-  }
-}
+  },
+};

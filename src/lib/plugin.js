@@ -1,11 +1,10 @@
-'use strict';
-
 /**
  *
  * @author andyzlliu andyzlliu@tencent.com
  * @date    2016-11-24 10:25:05
  */
-/*jslint node: true */
+
+'use strict';
 
 const path = require('path');
 const fs = require('fs');
@@ -25,9 +24,12 @@ module.exports = {
       parentPath = path.resolve(curPath, '..');
 
       try {
+        // eslint-disable-next-line global-require, import/no-dynamic-require
         const mod = require(modulePath);
         return mod;
-      } catch (ex) {}
+      } catch (ex) {
+        console.log(ex);
+      }
 
       // 到达根目录
       if (parentPath === curPath) {
@@ -38,6 +40,7 @@ module.exports = {
     }
 
     try {
+      // eslint-disable-next-line global-require, import/no-dynamic-require
       return require(pkg);
     } catch (ex) {
       return null;
@@ -76,5 +79,5 @@ module.exports = {
     }
 
     return cmd;
-  }
+  },
 };

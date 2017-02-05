@@ -3,6 +3,9 @@
  * @author andyzlliu andyzlliu@tencent.com
  * @date Sun Feb 05 2017
  */
+
+'use strict';
+
 const plugin = require('../lib/plugin');
 const filter = require('../lib/filter');
 const chalk = require('chalk');
@@ -15,13 +18,13 @@ class Sasslint {
   constructor() {
     this.outputs = [];
     this.cfg = {
-      hasError: false
-    }
+      hasError: false,
+    };
   }
 
   dealFile(fileArr) {
     let res = [];
-    const folder = /^[^\.]+$/;
+    const folder = /^[^.]+$/;
 
     fileArr.forEach((item) => {
       if (folder.test(item)) {
@@ -59,7 +62,7 @@ class Sasslint {
         }
 
         if (type === 'ERROR') {
-          cfg.hasError = true;
+          this.cfg.hasError = true;
           type = chalk.red(type);
         } else if (type === 'WARN') {
           type = chalk.yellow(' WARN');
@@ -79,18 +82,18 @@ class Sasslint {
   }
 
   check(files) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       let fileArr = files;
 
       if (!(files instanceof Array)) {
         fileArr = files.trim().split('\n');
       }
 
-      fileArr = filter.reg(fileArr, /\.sass$|\.scss$|\.$|^[^\.]+$/);
+      fileArr = filter.reg(fileArr, /\.sass$|\.scss$|\.$|^[^.]+$/);
       fileArr = this.dealFile(fileArr);
 
       // 奇葩sasslint，不加空格就挂了
-      files = fileArr.join(", ");
+      files = fileArr.join(', ');
 
       // 没有文件需要校验，提前resolve
       if (files === '') {
@@ -102,7 +105,7 @@ class Sasslint {
 
       const sasslint = plugin.cmd('sass-lint');
 
-      exec(`${sasslint} "${files}" -v -q -f json`, (error, result, stderr) => {
+      exec(`${sasslint} "${files}" -v -q -f json`, (error) => {
         const resPath = path.resolve(process.cwd(), 'sass-lint.html');
         let json;
 
@@ -121,8 +124,10 @@ class Sasslint {
 
         this.report(json);
 
-        fs.unlink(resPath, function (err) {
-          if (err) throw err;
+        fs.unlink(resPath, (err) => {
+          if (err) {
+            throw err;
+          }
         });
 
         resolve();
@@ -133,8 +138,8 @@ class Sasslint {
   getRes() {
     return {
       outputs: this.outputs || [],
-      hasError: this.cfg.hasError || false
-    }
+      hasError: this.cfg.hasError || false,
+    };
   }
 }
 

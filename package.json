@@ -8,10 +8,16 @@
     "generator-imlint-hook": "^0.0.8",
     "generator-imlint-init": "^0.0.9",
     "minimist": "^1.2.0",
-    "msee": "^0.3.2"
+    "msee": "^0.3.2",
+    "yeoman-environment": "^1.1.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "imlint check",
+    "eslint": "git diff --cached --name-only --diff-filter=ACMRTUB | grep -E \"\\.js$|\\.jsx$\" | xargs eslint {}",
+    "sasslint": "imlint-validate-sass",
+    "commitmsg": "validate-commit-msg",
+    "precommit": "npm run eslint && npm run sasslint"
   },
   "repository": {
     "type": "git",
@@ -28,5 +34,18 @@
   "bugs": {
     "url": "https://github.com/xsbailong/imlint/issues"
   },
-  "homepage": "https://github.com/xsbailong/imlint#readme"
+  "homepage": "https://github.com/xsbailong/imlint#readme",
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "eslint": "^3.10.2",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-babel": "^3.3.0",
+    "eslint-plugin-import": "^1.16.0",
+    "eslint-plugin-jsx-a11y": "^2.2.2",
+    "eslint-plugin-react": "^6.5.0",
+    "husky": "^0.11.9",
+    "imlint-validate-sass": "0.0.2",
+    "sass-lint": "^1.9.1",
+    "validate-commit-msg": "^2.8.2"
+  }
 }

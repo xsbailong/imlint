@@ -1,42 +1,35 @@
-'use strict';
-
 /**
  *
  * @author andyzlliu andyzlliu@tencent.com
  * @date    2016-11-22 16:23:09
  */
-/*jslint node: true */
 
-const plugin = require('../lib/plugin');
-const exec = require('child_process').exec;
-const fs = require('fs');
-const path = require('path');
+'use strict';
+
 const chalk = require('chalk');
-const eslintPro = require('../processor/eslint');
-const eslint = plugin.pkg('eslint');
 
 const CONFIG = {
   TYPE: {
     1: 'WARN',
-    2: 'ERROR'
+    2: 'ERROR',
   },
   DEFAULT_TYPE: 'WARN',
   PROCESSOR: {
     eslint: 'eslint',
-    sasslint: 'sasslint'
-  }
+    sasslint: 'sasslint',
+  },
 };
 let cfg = {
-  outputs: []
+  outputs: [],
 };
 let mods = {
   eslint: null,
-  sasslint: null
+  sasslint: null,
 };
 let processors = {};
 
 const report = {
-  output: function () {
+  output: () => {
     let outputs = cfg.outputs;
 
     outputs.unshift('');
@@ -52,7 +45,7 @@ const report = {
     console.log(outputs.join('\n'));
 
     process.exit(0);
-  }
+  },
 };
 
 const priva = {
@@ -61,7 +54,8 @@ const priva = {
 
     Object.keys(PROCESSOR).forEach((key) => {
       let item = PROCESSOR[key];
-      
+
+      // eslint-disable-next-line global-require, import/no-dynamic-require
       mods[key] = require(`../processor/${item}`);
     });
   },
@@ -74,15 +68,14 @@ const priva = {
     let promises = [];
     const PROCESSOR = CONFIG.PROCESSOR;
 
-    Object.keys(PROCESSOR).forEach(function (key) {
-      // let pro = checkProcess[key];
+    Object.keys(PROCESSOR).forEach((key) => {
       let pro = processors[key] = new mods[key]();
 
       promises.push(pro.check(files));
     });
 
     Promise.all(promises).then(() => {
-       Object.keys(PROCESSOR).forEach(function (key) {
+      Object.keys(PROCESSOR).forEach((key) => {
         let pro = processors[key];
         let res = pro.getRes();
 
@@ -95,7 +88,7 @@ const priva = {
 
       report.output();
     });
-  }
+  },
 };
 
 const expo = {
@@ -117,7 +110,7 @@ const expo = {
 
   run: (files) => {
     priva.check(files);
-  }
+  },
 };
 
 module.exports = expo;

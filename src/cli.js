@@ -1,14 +1,12 @@
-'use strict'
-
 /**
  *
  * @author andyzlliu andyzlliu@tencent.com
  * @date    2016-11-13 15:59:25
  */
-/*jslint node: true */
+
+'use strict';
 
 const minimist = require('minimist');
-const cliVersion = require('./cli/version');
 const CONFIG = require('./config');
 
 let cfg = {};
@@ -32,19 +30,23 @@ const priva = {
     let res;
     const cmds = args._ || {};
 
-    Object.keys(args).some(function (key) {
+    Object.keys(args).some((key) => {
       if (CONFIG.CLI_PARAMS[key]) {
         res = CONFIG.CLI_PARAMS[key];
         return true;
       }
+
+      return false;
     });
 
     if (!res) {
-      cmds.some(function (key) {
+      cmds.some((key) => {
         if (CONFIG.CLI_MAP[key]) {
           res = CONFIG.CLI_MAP[key];
           return true;
         }
+
+        return false;
       });
     }
 
@@ -68,6 +70,7 @@ const priva = {
     const COMMAND = CONFIG.COMMAND;
 
     COMMAND.forEach((cmd) => {
+      // eslint-disable-next-line global-require, import/no-dynamic-require
       cli[cmd] = require(`./cli/${cmd}.js`);
     });
   },
@@ -75,7 +78,7 @@ const priva = {
   init: () => {
     priva.initCli();
     priva.initArgs();
-  }
+  },
 };
 
 const expo = {
@@ -85,7 +88,7 @@ const expo = {
 
     // 初始化入口
     priva.init();
-  }
+  },
 };
 
 module.exports = expo;

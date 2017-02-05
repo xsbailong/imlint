@@ -1,0 +1,11 @@
+{
+  "config": {
+    "enable": [
+      "eslint",
+      "sass-lint",
+      "git-hook"
+    ],
+    "installDependencies": true,
+    "tool": "tnpm"
+  }
+}

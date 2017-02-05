@@ -3,18 +3,22 @@
  * @author andyzlliu andyzlliu@tencent.com
  * @date Sun Feb 05 2017
  */
+
+'use strict';
+
 const plugin = require('../lib/plugin');
 const filter = require('../lib/filter');
 const chalk = require('chalk');
 const CONFIG = require('./config');
+
 const eslint = plugin.pkg('eslint');
 
 class Eslint {
   constructor() {
     this.outputs = [];
     this.cfg = {
-      hasError: false
-    }
+      hasError: false,
+    };
   }
 
   report(data) {
@@ -24,7 +28,7 @@ class Eslint {
 
     let outputs = this.outputs;
 
-    data.forEach((item, index) => {
+    data.forEach((item) => {
       let msgs = item.messages;
 
       if (!msgs) {
@@ -77,8 +81,8 @@ class Eslint {
     const cli = new CLIEngine({
       extensions: [
         '.js',
-        '.jsx'
-      ]
+        '.jsx',
+      ],
     });
     let fileStrs;
     let fileArr = files;
@@ -89,10 +93,10 @@ class Eslint {
     }
 
     // .js, .jsx, ., 文件夹
-    fileArr = filter.reg(fileArr, /\.js$|\.jsx$|\.$|^[^\.]+$/);
+    fileArr = filter.reg(fileArr, /\.js$|\.jsx$|\.$|^[^.]+$/);
 
     if (fileArr && fileArr.length) {
-      var data = cli.executeOnFiles(fileArr);
+      const data = cli.executeOnFiles(fileArr);
 
       this.report(data.results);
     }
@@ -103,8 +107,8 @@ class Eslint {
   getRes() {
     return {
       outputs: this.outputs || [],
-      hasError: this.cfg.hasError || false
-    }
+      hasError: this.cfg.hasError || false,
+    };
   }
 }
 
