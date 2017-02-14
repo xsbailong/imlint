@@ -31,7 +31,7 @@ class Eslint {
     data.forEach((item) => {
       let msgs = item.messages;
 
-      if (!msgs) {
+      if (!msgs || !msgs.length) {
         return;
       }
 

@@ -9,7 +9,7 @@
     "generator-imlint-init": "^0.0.9",
     "minimist": "^1.2.0",
     "msee": "^0.3.2",
-    "yeoman-environment": "^1.1.0"
+    "yeoman-environment": "^1.6.6"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

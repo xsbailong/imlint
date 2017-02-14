@@ -56,7 +56,7 @@ const priva = {
   initArgs: () => {
     const args = cfg.args;
     let cliName = priva.getCli(args);
-    console.log(args);
+    // console.log(args);
 
     // 命令不存在
     if (!cli[cliName]) {

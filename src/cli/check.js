@@ -17,6 +17,7 @@ const CONFIG = {
   PROCESSOR: {
     eslint: 'eslint',
     sasslint: 'sasslint',
+    imlist: 'imlist',
   },
 };
 let cfg = {
