@@ -1,12 +1,13 @@
 {
   "name": "imlint",
-  "version": "0.0.8",
+  "version": "0.1.4",
   "description": "",
   "main": "./index.js",
   "dependencies": {
     "chalk": "^1.1.3",
     "generator-imlint-hook": "^0.0.8",
-    "generator-imlint-init": "^0.0.9",
+    "generator-imlint-init": "^0.0.11",
+    "imlint-checklist": "^0.1.2",
     "minimist": "^1.2.0",
     "msee": "^0.3.2",
     "yeoman-environment": "^1.6.6"

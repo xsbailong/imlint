@@ -28,7 +28,7 @@ module.exports = {
         const mod = require(modulePath);
         return mod;
       } catch (ex) {
-        console.log(ex);
+        // console.log(ex);
       }
 
       // 到达根目录

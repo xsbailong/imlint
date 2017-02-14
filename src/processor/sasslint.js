@@ -126,7 +126,8 @@ class Sasslint {
 
         fs.unlink(resPath, (err) => {
           if (err) {
-            throw err;
+            // throw err;
+            return;
           }
         });
 

@@ -8,7 +8,7 @@
 
 const expo = {
   init: () => {
-    console.log('version 0.0.7');
+    console.log('version 0.1.4');
   },
 };
 
